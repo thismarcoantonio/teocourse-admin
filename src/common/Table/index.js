@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-function Table({ title, values, onSearch, onEdit, onRemove, emptyState }) {
+function Table({ title, values, onSearch, onEdit, onRemove, emptyState, renderActions }) {
   const classes = useStyles()
   const isEmpty = !values || !values.length
 
@@ -31,6 +31,7 @@ function Table({ title, values, onSearch, onEdit, onRemove, emptyState }) {
           {title}
         </Typography>
         {onSearch && !isEmpty && <Search onSearch={onSearch} />}
+        {renderActions && renderActions()}
       </Toolbar>
       <BaseTable>
         {isEmpty && <Body className={classes.emptyState}>{emptyState}</Body>}

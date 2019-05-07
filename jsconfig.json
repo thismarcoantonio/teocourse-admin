@@ -5,11 +5,11 @@
     "module": "commonjs",
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "common/*": ["./src/common/*"],
-      "images/*": ["./src/images/*"],
-      "pages/*": ["./src/pages/*"],
-      "theme/*": ["./src/theme/*"],
-      "utils/*": ["./src/utils/*"]
+      "common/*": ["./common/*"],
+      "images/*": ["./images/*"],
+      "pages/*": ["./pages/*"],
+      "theme/*": ["./theme/*"],
+      "utils/*": ["./utils/*"]
     }
   },
   "exclude": [

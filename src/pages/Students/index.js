@@ -1,6 +1,8 @@
 import React from "react"
 import Table from "common/Table"
 import { Query } from "react-apollo"
+import { Link } from "react-router-dom"
+import { Button } from "@material-ui/core"
 import studentsQuery from "./studentsQuery"
 
 function Students() {
@@ -14,15 +16,18 @@ function Students() {
 
   return (
     <Query query={studentsQuery}>
-      {({ data }) => {
-        return (
-          <Table
-            title="Alunos"
-            values={parseData(data)}
-            emptyState="Não foram encontrados alunos para exibir"
-          />
-        )
-      }}
+      {({ data }) => (
+        <Table
+          title="Alunos"
+          values={parseData(data)}
+          renderActions={() => (
+            <Button component={Link} to="/alunos/criar">
+              Adicionar
+            </Button>
+          )}
+          emptyState="Não foram encontrados alunos para exibir"
+        />
+      )}
     </Query>
   )
 }

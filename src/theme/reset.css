@@ -52,7 +52,7 @@ blockquote, q {
   quotes: none;
 }
 
-button, input, a, textarea {
+button, a, textarea {
   outline: none;
   color: inherit;
   font-family: inherit;

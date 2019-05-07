@@ -1,12 +1,14 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { ApolloProvider } from "react-apollo"
+import { NotificationProvider } from "common/NotificationContext"
 import { ThemeProvider } from "@material-ui/styles"
 import Routes from "common/Routes"
-import client from "config/apollo"
+import setupApollo from "config/setupApollo"
 import theme from "theme"
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("_t"))
+  const [client, setClient] = useState(null)
 
   const handleLogin = ({ data }) => {
     const token = data.login
@@ -14,13 +16,20 @@ function App() {
     setToken(token)
   }
 
-  return (
+  useEffect(() => {
+    const apolloClient = setupApollo({ token })
+    setClient(apolloClient)
+  }, [token])
+
+  return client ? (
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
-        <Routes onLogin={handleLogin} isAuthenticated={!!token} />
+        <NotificationProvider>
+          <Routes onLogin={handleLogin} isAuthenticated={!!token} />
+        </NotificationProvider>
       </ThemeProvider>
     </ApolloProvider>
-  )
+  ) : "Carregando"
 }
 
 export default App

@@ -6,20 +6,23 @@ import { Button as BaseButton } from "@material-ui/core"
 const useStyles = makeStyles({
   button: {
     boxShadow: "none",
-    textTransform: "unset"
+    textTransform: "unset",
+    "&:active": {
+      boxShadow: "none"
+    }
   }
 })
 
-function Button({ children, type, onClick, className }) {
+function Button({ children, type, className, ...props }) {
   const classes = useStyles()
 
   return (
     <BaseButton
       color="primary"
-      onClick={onClick}
       variant="contained"
       type={type || "button"}
       className={cn(classes.button, className)}
+      {...props}
     >
       {children}
     </BaseButton>
